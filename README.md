@@ -1,36 +1,59 @@
-1. 프로젝트 제목 및 소개
+# 🚀 Python Multi-Tool Workspace
 
-🛡️ Password Security Checker   
-정보보안기사 학습 내용을 바탕으로 제작한 파이썬 기반 비밀번호 강도 검사기입니다.
+파이썬의 핵심 문법을 실무적인 웹 도구로 구현하고, `Streamlit` 프레임워크를 통해 백엔드 로직을 시각화하는 실습 프로젝트입니다.
 
-2. 주요 기능 (Features)
+## 1. 프로젝트 개요
+* **목적**: 파이썬 제어문, 함수, 자료구조의 실제 활용 및 웹 서비스 구조 이해
+* **설계 원칙**: 
+    * **관심사 분리 (SoC)**: 비즈니스 로직(`logic_*.py`)과 UI 레이어(`pages/`)를 독립적으로 구성하여 유지보수성 향상
+    * **상태 관리**: `st.session_state`를 활용하여 페이지 간 데이터를 공유하고 전역 상태를 유지
 
-강도 측정: 비밀번호 길이를 분석하여 점수 부여 (비교 연산자 활용)
+---
 
-패턴 검사: 숫자 및 특수문자(!@#$%^&*) 포함 여부 확인 (멤버십 연산자 활용)
+## 2. 상세 기능 (Sub-Tools)
 
-실시간 피드백: 보안 강도에 따른 맞춤형 개선 가이드 출력 (Match-Case 활용)
+### 2-1. 🛡️ Password Security Checker
+입력된 비밀번호의 복잡성을 분석하여 보안 등급을 산출하고 사용자에게 상세 피드백을 제공합니다.
+* **검증 항목**: 
+    * 최소 10자 이상 여부
+    * 대문자 1개 이상 포함 여부
+    * 허용된 특수문자(`!@#$%^*()_+-=`) 1개 이상 포함 여부
+* **위험 탐지**: 허용되지 않은 문자(공백, 한글, 기타 금지된 기호) 포함 시 즉시 경고 및 차단
+* **기술적 특징**: 딕셔너리 구조를 통한 검증 결과 반환 및 문자열 순회 로직 구현
 
-3. 설치 및 실행 방법 (How to Run)   
-   
-## 🚀 시작하기
+### 2-2. 📊 실시간 보안 대시보드 (Main)
+전체 도구의 사용 통계를 시각적인 메트릭(Metric)으로 제공합니다.
+* **실시간 지표**: 총 검사 횟수, 보안 통과(성공), 조건 미달(실패) 카운트 출력
+* **데이터 유지**: 세션 초기화 로직을 통해 브라우저 세션 동안 통계 데이터를 안전하게 관리
 
-1. 필수 라이브러리 설치 (Streamlit):
-   ```bash
-   pip install streamlit
-   ```
-프로그램 실행:
+---
 
-```bash
-streamlit run app.py
+## 3. 기술 스택 (Tech Stack)
+* **Language**: **Python 3.14**
+* **Framework**: **Streamlit** (Multi-page App 구조)
+* **IDE**: PyCharm
+
+---
+
+## 4. 프로젝트 구조 (Directory Structure)
+```text
+mini_project/
+├── main.py              # 메인 대시보드 및 전역 세션 변수 초기화
+├── logic_password.py    # 비밀번호 검증 핵심 비즈니스 로직 (Backend)
+├── pages/               # 개별 기능 페이지 모음
+│   └── password_check.py # 비밀번호 검사 상세 UI (Frontend)
+└── README.md            # 프로젝트 상세 가이드
 ```
 
+## 5. 설치 및 실행 방법 (How to Run)
+필수 라이브러리 설치:
 
----
+```Bash
+pip install streamlit
+```
+프로그램 실행:
 
-4. 기술 스택 (Tech Stack)
-* **Language**: Python 3.14
-* **Library**: Streamlit (Front-end Framework)
-* **Concepts**: OOP, Module separation, Logic evaluation
-
----
+```Bash
+# 프로젝트 루트 디렉토리에서 실행
+streamlit run main.py
+```
