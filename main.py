@@ -24,7 +24,7 @@ if 'check_count' not in st.session_state:
 #     st.metric(label="✨ 평균 보안 점수", value="85점", delta="5점 상승")
 
 with st.container(border=True): # 테두리가 있는 박스 생성
-    st.write("### 📊 실시간 보안 리포트")
+    st.write("### 📊 패스워드 체크 리포트")
     st.divider()
     col1, col2 = st.columns(2)
     with col1:
