@@ -52,7 +52,7 @@ class UnitConverter:
             return round(result, 4)
 
         except (KeyError, ZeroDivisionError, TypeError):
-            return 0.0
+            return None # 0.0 대신 None 을 반환
 
     @classmethod
     def _convert_temperature(cls, value, from_unit, to_unit):
